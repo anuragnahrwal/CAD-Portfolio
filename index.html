@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anurag — CAD projects</title>
+<meta name="description" content="Mechanical CAD portfolio: quadcopter drone, 4-cylinder engine, bench vice and more, modelled in SolidWorks and Fusion 360.">
+<meta property="og:title" content="Anurag — CAD projects">
+<meta property="og:description" content="Drone, 4-cylinder engine, bench vice and more. SolidWorks and Fusion 360.">
+<meta property="og:image" content="assets/drone.jpg">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231B4FA8'/><circle cx='50' cy='50' r='20' fill='none' stroke='white' stroke-width='9'/><circle cx='50' cy='50' r='5' fill='white'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EDEFEC; --tile:#DCE0DD; --ink:#101923; --muted:#4D5A66; --line:#C3C9C5;
+  --blue:#1B4FA8; --orange:#D9501F; --white:#fff;
+  --pad:clamp(20px,5vw,72px);
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#0F1519; --tile:#1A2228; --ink:#E9EDEA; --muted:#9AA7B1; --line:#2B363E; --blue:#7FA8F0; --orange:#FF8A5C;}
+  .tile img,.tile video{mix-blend-mode:normal!important;filter:none}
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.55 Archivo,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.wrap{padding-inline:var(--pad);max-width:1480px;margin-inline:auto}
+
+/* top bar */
+.bar{display:flex;justify-content:space-between;align-items:center;padding-block:20px;font-weight:600}
+.bar nav{display:flex;gap:26px;font-size:15px}
+.bar a{text-decoration:none}
+.bar nav a:hover{text-decoration:underline;text-underline-offset:5px}
+
+/* hero */
+.hero{padding-block:clamp(36px,7vw,96px) clamp(28px,5vw,64px)}
+.hero h1{font-weight:900;font-stretch:125%;font-size:clamp(46px,11.5vw,176px);line-height:.88;letter-spacing:-.035em}
+.hero h1 span{display:block;color:var(--blue)}
+.hero-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--pad);margin-top:clamp(28px,4vw,56px);align-items:end}
+.hero p{max-width:34em;font-size:clamp(17px,1.6vw,21px);color:var(--muted)}
+.hero p b{color:var(--ink);font-weight:600}
+.tools{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.tools li{list-style:none;border:1.5px solid var(--ink);border-radius:999px;padding:6px 16px;font-weight:600;font-size:15px}
+.tools{padding:0}
+
+/* shared tile */
+.tile{background:var(--tile);border-radius:6px;overflow:hidden;position:relative;display:grid;place-items:center}
+.tile img,.tile video{display:block;width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
+.tile.zoom{cursor:zoom-in;border:0;padding:0;font:inherit;color:inherit;width:100%}
+
+/* features */
+.feature{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(20px,3vw,48px);align-items:center;padding-block:clamp(28px,4vw,56px);border-top:1.5px solid var(--ink)}
+.feature .media{grid-column:1 / span 7}
+.feature .copy{grid-column:8 / span 5}
+.feature.flip .media{grid-column:6 / span 7;grid-row:1}
+.feature.flip .copy{grid-column:1 / span 5;grid-row:1}
+.media .tile{aspect-ratio:16/10}
+.copy h2{font-weight:800;font-stretch:112%;font-size:clamp(30px,3.6vw,52px);line-height:1;letter-spacing:-.02em;margin-bottom:16px}
+.copy p{color:var(--muted);max-width:30em}
+.copy ul{margin:20px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.copy li{padding-left:18px;position:relative}
+.copy li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--orange)}
+.kind{display:inline-block;font-weight:600;font-size:14px;border:1.5px solid var(--line);border-radius:4px;padding:2px 10px;margin-bottom:18px;color:var(--muted)}
+.switch{display:flex;gap:8px;margin-top:12px}
+.switch button{font:600 15px Archivo,sans-serif;padding:8px 18px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.switch button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.media .tile[hidden]{display:none}
+
+/* small builds */
+.more{padding-block:clamp(36px,5vw,72px) clamp(40px,6vw,96px);border-top:1.5px solid var(--ink)}
+.more-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.more h2{font-weight:800;font-stretch:112%;font-size:clamp(26px,3vw,40px);letter-spacing:-.02em}
+.more-head p{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,1.6vw,24px)}
+.card .tile{aspect-ratio:4/3}
+.card .tile img{padding:6%}
+.card h3{font-weight:700;font-size:17px;margin-top:12px;line-height:1.2}
+.card p{font-size:15px;color:var(--muted);margin-top:3px}
+
+/* footer */
+footer{border-top:1.5px solid var(--ink);padding-block:36px 56px}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:baseline}
+footer h2{font-weight:800;font-stretch:112%;font-size:clamp(26px,3vw,40px);letter-spacing:-.02em}
+footer a{font-weight:600;text-underline-offset:5px}
+footer small{color:var(--muted);font-size:14px;width:100%}
+
+/* lightbox */
+dialog{border:0;padding:0;background:transparent;max-width:min(94vw,1400px);max-height:92vh;overflow:visible}
+dialog::backdrop{background:rgba(10,15,19,.82)}
+dialog img{display:block;max-width:100%;max-height:86vh;border-radius:6px;background:var(--tile)}
+dialog form{position:absolute;top:-44px;right:0}
+dialog button{font:600 15px Archivo,sans-serif;padding:8px 18px;border-radius:999px;border:0;background:#fff;color:#101923;cursor:pointer}
+dialog p{color:#fff;margin-top:10px;font-weight:600}
+
+@media (max-width:900px){
+  .hero-row{grid-template-columns:1fr}
+  .tools{justify-content:flex-start}
+  .feature .media,.feature.flip .media{grid-column:1 / -1;grid-row:1}
+  .feature .copy,.feature.flip .copy{grid-column:1 / -1;grid-row:2}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:420px){.bar nav{gap:16px}}
+</style>
+</head>
+<body>
+
+<header class="wrap bar">
+  <a href="#top"><strong>Anurag</strong></a>
+  <nav aria-label="Sections"><a href="#featured">Featured</a><a href="#more">More builds</a><a href="#contact">Contact</a></nav>
+</header>
+
+<main id="top">
+  <section class="wrap hero">
+    <h1>CAD<span>projects</span></h1>
+    <div class="hero-row">
+      <p>Mechanical engineering student at Delhi Technological University. I model <b>machines, mechanisms and assemblies</b>, then put them in motion.</p>
+      <ul class="tools" aria-label="Software used"><li>SolidWorks</li><li>Fusion 360</li></ul>
+    </div>
+  </section>
+
+  <div class="wrap" id="featured">
+
+    <!-- DRONE -->
+    <article class="feature">
+      <div class="media">
+        <div class="tile" id="drone-model"><img src="assets/drone.jpg" alt="Quadcopter drone assembly in SolidWorks: blue arms, green propellers, yellow battery" width="1500" height="870"></div>
+        <div class="tile" id="drone-video" hidden><video src="assets/drone-motion.mp4" poster="assets/drone-poster.jpg" controls muted loop playsinline preload="none" aria-label="Drone motion study screen recording"></video></div>
+        <div class="switch" role="group" aria-label="Drone view">
+          <button type="button" data-show="drone-model" aria-pressed="true">Model</button>
+          <button type="button" data-show="drone-video" aria-pressed="false">Motion study</button>
+        </div>
+      </div>
+      <div class="copy">
+        <span class="kind">Assembly</span>
+        <h2>Quadcopter drone</h2>
+        <p>Full quad frame built as an assembly, with a motion study to check how the parts move together.</p>
+        <ul>
+          <li>Four arms with truss cut-outs</li>
+          <li>Motors with propellers and four ESCs</li>
+          <li>Flight board, battery and mounting hardware</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ENGINE -->
+    <article class="feature flip">
+      <div class="media"><button class="tile zoom" data-full="assets/engine.jpg" data-cap="4-cylinder engine"><img src="assets/engine.jpg" alt="Four pistons with connecting rods on a crankshaft, SolidWorks assembly" width="1500" height="1098"></button></div>
+      <div class="copy">
+        <span class="kind">Assembly</span>
+        <h2>4-cylinder engine</h2>
+        <p>Piston, connecting rod and crankshaft assembly. The core of an inline-four, built part by part.</p>
+        <ul>
+          <li>Four pistons with ring grooves and pin bores</li>
+          <li>Connecting rods with split bearing caps</li>
+          <li>Crankshaft with counterweights and flange</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- VICE -->
+    <article class="feature">
+      <div class="media"><button class="tile zoom" data-full="assets/vice.jpg" data-cap="Bench vice"><img src="assets/vice.jpg" alt="Blue bench vice assembly with threaded screw and handle" width="1362" height="920"></button></div>
+      <div class="copy">
+        <span class="kind">Assembly</span>
+        <h2>Bench vice</h2>
+        <p>Working bench vice with a threaded lead screw, sliding jaw and a ball-ended handle.</p>
+        <ul>
+          <li>Cast-style body with base mounting holes</li>
+          <li>Threaded screw and sliding jaw</li>
+          <li>Countersunk bolts for the jaw plates</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+
+  <section class="more" id="more">
+    <div class="wrap">
+      <div class="more-head"><h2>More builds</h2><p>Tap any image to enlarge.</p></div>
+      <div class="grid">
+        <article class="card"><button class="tile zoom" data-full="assets/geneva.jpg" data-cap="Geneva drive"><img loading="lazy" src="assets/geneva.jpg" alt="Geneva drive mechanism with driver disc and slotted wheel"></button><h3>Geneva drive</h3><p>Intermittent motion mechanism</p></article>
+        <article class="card"><button class="tile zoom" data-full="assets/joint-cup.jpg" data-cap="Cup and clevis joint"><img loading="lazy" src="assets/joint-cup.jpg" alt="Orange cup with blue clevis and pins"></button><h3>Cup and clevis joint</h3><p>Multi-part pivot assembly</p></article>
+        <article class="card"><button class="tile zoom" data-full="assets/joint-block.jpg" data-cap="Block and pin joint"><img loading="lazy" src="assets/joint-block.jpg" alt="Pink and red blocks with a cylinder and blue pinned plate"></button><h3>Block and pin joint</h3><p>Pinned joint assembly</p></article>
+        <article class="card"><button class="tile zoom" data-full="assets/gear.jpg" data-cap="Spoked gear"><img loading="lazy" src="assets/gear.jpg" alt="Spoked gear with keyway"></button><h3>Spoked gear</h3><p>Single part with keyway</p></article>
+        <article class="card"><button class="tile zoom" data-full="assets/rack.jpg" data-cap="Gear rack"><img loading="lazy" src="assets/rack.jpg" alt="Gear rack with mounting lugs at both ends"></button><h3>Gear rack</h3><p>Teeth with end lugs</p></article>
+        <article class="card"><button class="tile zoom" data-full="assets/bracket.jpg" data-cap="Lug bracket"><img loading="lazy" src="assets/bracket.jpg" alt="Triangular bracket with two bored lugs and a slot"></button><h3>Lug bracket</h3><p>Chamfered part with slot</p></article>
+        <article class="card"><button class="tile zoom" data-full="assets/wedge.jpg" data-cap="Stepped slot block"><img loading="lazy" src="assets/wedge.jpg" alt="Stepped block with angled slot and two pins"></button><h3>Stepped slot block</h3><p>Extruded part with pins</p></article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Want to work together?</h2>
+    <!-- TODO: replace with your real email -->
+    <a href="mailto:your-email@example.com">your-email@example.com</a>
+    <small>© <span id="yr"></span> Anurag. Modelled in SolidWorks and Fusion 360.</small>
+  </div>
+</footer>
+
+<dialog id="lb" aria-label="Enlarged image">
+  <form method="dialog"><button>Close</button></form>
+  <img alt=""><p></p>
+</dialog>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// drone: model / motion study toggle
+const vid = document.querySelector('#drone-video video');
+document.querySelectorAll('.switch button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.switch button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  ['drone-model','drone-video'].forEach(id => document.getElementById(id).hidden = id !== b.dataset.show);
+  if (b.dataset.show === 'drone-video') { vid.play().catch(()=>{}); } else { vid.pause(); }
+}));
+
+// lightbox
+const lb = document.getElementById('lb'), lbImg = lb.querySelector('img'), lbCap = lb.querySelector('p');
+document.querySelectorAll('.zoom').forEach(t => t.addEventListener('click', () => {
+  lbImg.src = t.dataset.full; lbImg.alt = t.querySelector('img').alt; lbCap.textContent = t.dataset.cap; lb.showModal();
+}));
+lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
+</script>
+</body>
+</html>
